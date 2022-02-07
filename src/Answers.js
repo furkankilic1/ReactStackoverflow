@@ -62,7 +62,12 @@ const Answers = () => {
                         <form onSubmit={e => {
                             e.preventDefault();
 
-                            setList([...list, { answerContent: e.target.newAnswer.value }]);
+                            {
+                                e.target.newAnswer.value != "" ? 
+                                setList([...list, { answerContent: e.target.newAnswer.value }])
+                                :
+                                setList(list)
+                            }
 
                             const addAnswer = async () => {
                                 await fetch(`https://stackoverflowservervs.azurewebsites.net/Stackoverflow/post_AddAnswer?questionId=${params.id}&answerContent=${e.target.newAnswer.value}`, {
