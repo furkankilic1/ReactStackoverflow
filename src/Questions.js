@@ -43,7 +43,12 @@ const Questions = () => {
             <form onSubmit={e => {
                 e.preventDefault();
 
-                setList([...list, { questionContent: e.target.newQuestion.value }]);
+                {
+                    e.target.newQuestion.value != "" ? 
+                    setList([...list, { questionContent: e.target.newQuestion.value }])
+                    :
+                    setList(list)
+                }
 
                 const addQuestion = async () => {
                     await fetch(`https://stackoverflowservervs.azurewebsites.net/Stackoverflow/post_AddQuestion?questionContent=${e.target.newQuestion.value}`, {
